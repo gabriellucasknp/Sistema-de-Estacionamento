@@ -69,6 +69,4 @@ O sistema foi otimizado para:
 - ✅ Formatação consistente de datas e valores
 - ✅ Encoding UTF-8 para caracteres especiais
 
-## 📝 Licença
 
-Este projeto está sob a licença MIT.
