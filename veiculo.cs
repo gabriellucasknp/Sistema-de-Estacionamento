@@ -1,15 +1,15 @@
 // Models/Veiculo.cs
 using System;
 
-namespace SistemaEstacionamento.Models
+namespace SistemaEstacionamento. Models
 {
     /// <summary>
-    /// Entidade que representa um veículo no sistema de estacionamento.
+    /// Entidade que representa um veículo no sistema de estacionamento. 
     /// </summary>
     public class Veiculo
     {
         // Identificador interno (poderia ser GUID ou autonumérico em banco)
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; } = Guid. NewGuid();
 
         // Placa única do veículo (chave de negócio)
         public string Placa { get; set; } = null!;
@@ -20,7 +20,7 @@ namespace SistemaEstacionamento.Models
         // Data/hora de entrada (UTC)
         public DateTime EntradaUtc { get; set; }
 
-        // Data/hora de saída (UTC). Null enquanto estiver dentro do estacionamento.
+        // Data/hora de saída (UTC). Null enquanto estiver dentro do estacionamento. 
         public DateTime? SaidaUtc { get; set; }
 
         // Valor cobrado na saída
