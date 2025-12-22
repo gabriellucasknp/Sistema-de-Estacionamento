@@ -1,6 +1,6 @@
 name: .NET Build and Test
 
-on:
+on: 
   push:
     branches: [ main, master ]
   pull_request:
@@ -8,9 +8,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on:  ubuntu-latest
 
-    steps:
+    steps: 
     - uses: actions/checkout@v4
     
     - name: Setup .NET
@@ -22,7 +22,7 @@ jobs:
       run: dotnet restore
     
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run:  dotnet build --no-restore --configuration Release
     
     - name: Display success message
-      run: echo "✅ Build completed successfully!"
+      run:  echo "✅ Build completed successfully!"
