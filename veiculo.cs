@@ -1,7 +1,7 @@
 // Models/Veiculo.cs
 using System;
 
-namespace SistemaEstacionamento. Models
+namespace SistemaEstacionamento.Models
 {
     /// <summary>
     /// Entidade que representa um veículo no sistema de estacionamento. 
@@ -9,7 +9,7 @@ namespace SistemaEstacionamento. Models
     public class Veiculo
     {
         // Identificador interno (poderia ser GUID ou autonumérico em banco)
-        public Guid Id { get; set; } = Guid. NewGuid();
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         // Placa única do veículo (chave de negócio)
         public string Placa { get; set; } = null!;
