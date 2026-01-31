@@ -14,12 +14,12 @@ public static class Repositorio
         try
         {
             using var sw = new StreamWriter(Caminho, false, System.Text.Encoding.UTF8);
-            sw.WriteLine("Placa,Modelo,Entrada,Saida,ValorPago"); // Cabeçalho
+            sw.WriteLine("Id,Placa,Modelo,EntradaUtc,SaidaUtc,ValorPago,Pago");
             
             foreach (var v in veiculos)
             {
-                string saida = v.Saida?.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) ?? "";
-                sw.WriteLine($"{v.Placa},{v.Modelo},{v.Entrada:yyyy-MM-dd HH:mm:ss},{saida},{v.ValorPago.ToString(CultureInfo.InvariantCulture)}");
+                string saida = v.SaidaUtc?.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture) ?? "";
+                sw.WriteLine($"{v.Id},{v.Placa},{v.Modelo},{v.EntradaUtc:yyyy-MM-dd HH:mm:ss},{saida},{v.ValorPago.ToString(CultureInfo.InvariantCulture)},{v.Pago}");
             }
         }
         catch (Exception ex)
@@ -46,7 +46,7 @@ public static class Repositorio
             bool primeiraLinha = true;
             foreach (var linha in linhas)
             {
-                if (primeiraLinha && linha.StartsWith("Placa,"))
+                if (primeiraLinha && linha.StartsWith("Id,"))
                 {
                     primeiraLinha = false;
                     continue;
@@ -56,15 +56,17 @@ public static class Repositorio
                     continue;
 
                 var partes = linha.Split(',');
-                if (partes.Length >= 5)
+                if (partes.Length >= 7)
                 {
                     lista.Add(new Veiculo
                     {
-                        Placa = partes[0],
-                        Modelo = partes[1],
-                        Entrada = DateTime.Parse(partes[2], CultureInfo.InvariantCulture),
-                        Saida = string.IsNullOrEmpty(partes[3]) ? null : DateTime.Parse(partes[3], CultureInfo.InvariantCulture),
-                        ValorPago = double.Parse(partes[4], CultureInfo.InvariantCulture)
+                        Id = Guid.Parse(partes[0]),
+                        Placa = partes[1],
+                        Modelo = partes[2],
+                        EntradaUtc = DateTime.Parse(partes[3], CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal),
+                        SaidaUtc = string.IsNullOrEmpty(partes[4]) ? null : DateTime.Parse(partes[4], CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal),
+                        ValorPago = decimal.Parse(partes[5], CultureInfo.InvariantCulture),
+                        Pago = bool.Parse(partes[6])
                     });
                 }
             }
